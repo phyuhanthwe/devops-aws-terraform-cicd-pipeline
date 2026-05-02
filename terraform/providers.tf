@@ -17,5 +17,5 @@ terraform {
 
 provider "aws" {
   # profile = "master-console-admin"
-  region  = var.region
+  region = var.region
 }
