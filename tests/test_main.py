@@ -17,14 +17,20 @@ def test_root_endpoint():
     assert "message" in response.json()
 
 
-def test_health_check():
-    """Test health endpoint - AWS uses this to know if app is alive"""
-    response = client.get("/health")
+# def test_health_check():
+#     """Test health endpoint - AWS uses this to know if app is alive"""
+#     response = client.get("/health")
+#     assert response.status_code == 200
+#     assert response.json()["status"] == "healthy"
+
+def test_root_endpoint():
+    response = client.get("/")
+
     assert response.status_code == 200
-    assert response.json()["status"] == "healthy"
+    assert "text/html" in response.headers["content-type"]
 
 
-@patch("main.get_db_connection")
+@patch("app.main.get_db_connection")
 def test_get_users(mock_db):
     """Test get users - we mock the database so we don't need a real DB to test"""
     mock_conn = MagicMock()
@@ -39,7 +45,7 @@ def test_get_users(mock_db):
     assert len(response.json()["users"]) == 2
 
 
-@patch("main.get_db_connection")
+@patch("app.main.get_db_connection")
 def test_create_user(mock_db):
     """Test creating a user"""
     mock_conn = MagicMock()

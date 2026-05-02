@@ -4,3 +4,6 @@ terraform/generated-key
 terraform/.terraform**
 terraform/terraform.tf**
 app/__pycache__
+.pytest_cache/
+tests/__pycache__
+junit/
