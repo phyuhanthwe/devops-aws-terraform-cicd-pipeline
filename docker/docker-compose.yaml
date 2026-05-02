@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      - POSTGRES_DB=appdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    container_name: postgres_db
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=appdb
+    depends_on:
+      - db
+    command: ["python", "-m", "app.main"]
+    container_name: fastapi-app
+      
+volumes:
+  postgres_data:

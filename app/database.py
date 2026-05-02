@@ -1,0 +1,35 @@
+import psycopg2
+import os
+
+def get_db_connection():
+    """
+    Connect to PostgreSQL.
+    All values come from environment variables (set in docker-compose or AWS Secrets Manager).
+    """
+    conn = psycopg2.connect(
+        host=os.environ.get("DB_HOST", "localhost"),
+        port=os.environ.get("DB_PORT", "5432"),
+        database=os.environ.get("DB_NAME", "appdb"),
+        user=os.environ.get("DB_USER", "postgres"),
+        password=os.environ.get("DB_PASSWORD", "postgres"),
+    )
+    return conn
+
+
+def init_db():
+    """
+    Create the users table if it doesn't exist yet.
+    Run this once when the app starts.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id    SERIAL PRIMARY KEY,
+            name  VARCHAR(100) NOT NULL,
+            email VARCHAR(100) UNIQUE NOT NULL
+        );
+    """)
+    conn.commit()
+    conn.close()
+    print("✅ Database table ready!")

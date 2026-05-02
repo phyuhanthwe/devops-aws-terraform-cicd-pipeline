@@ -1,0 +1,6 @@
+.venv/
+.tool-versions
+terraform/generated-key
+terraform/.terraform**
+terraform/terraform.tf**
+app/__pycache__
