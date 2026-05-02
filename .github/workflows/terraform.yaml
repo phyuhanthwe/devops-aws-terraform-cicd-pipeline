@@ -41,6 +41,7 @@ jobs:
         - run: terraform init
         - run: terraform fmt -check
         - run: terraform validate
+        ## fixed 
         - run: terraform plan
 
     terraform_apply:
