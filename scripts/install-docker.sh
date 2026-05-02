@@ -9,6 +9,6 @@ sudo usermod -aG docker ubuntu
 
 cd /home/ubuntu
 
-docker pull phyuhan/flask-cicd-demo-app:latest
+docker pull phyuhan/fast-app:v01
 
-docker run -it --name flask-app phyuhan/flask-cicd-demo-app:latest
+docker run -it --name fastapi-app phyuhan/fastapi-app:v01
