@@ -33,7 +33,7 @@ jobs:
 
         - name: Sts GetCallerIdentity
           run: |
-            aws sts get-caller-identit
+            aws sts get-caller-identity
 
     terraform_plan:
         if: github.event_name == 'pull_request'
