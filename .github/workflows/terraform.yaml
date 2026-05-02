@@ -18,41 +18,30 @@ permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
 jobs:
-    AssumeRoleAndCallIdentity:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Git clone the repository
-          uses: actions/checkout@v3
-
-        - name: configure aws credentials
-          uses: aws-actions/configure-aws-credentials@v1.7.0
-          with:
-            role-to-assume: ${{ secrets.AWS_ARN_ROLE }}
-            role-session-name: GitHub_to_AWS_via_FederatedOIDC
-            aws-region: ${{ env.AWS_REGION }}
-
-        - name: Sts GetCallerIdentity
-          run: |
-            aws sts get-caller-identity
-
     terraform_plan:
-        if: github.event_name == 'pull_request'
         runs-on: ubuntu-latest
-
+        if: github.event_name == 'pull_request'
         defaults:
             run:
                 working-directory: ./terraform
-                
         steps:
-            - uses: actions/checkout@v4
+        - name: Git clone the repository
+          uses: actions/checkout@v4
 
-            - name: set up and run terraform
-              uses: hashicorp/setup-terraform@v3
+        #AssumeRoleAndCallIdentity
+        - name: configure aws credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            role-to-assume: ${{ secrets.AWS_ARN_ROLE }}
+            aws-region: ${{ env.AWS_REGION }}
 
-            - run: terraform init
-            - run: terraform fmt -check
-            - run: terraform validate
-            - run: terraform plan
+        - name: set up and run terraform
+          uses: hashicorp/setup-terraform@v3
+
+        - run: terraform init
+        - run: terraform fmt -check
+        - run: terraform validate
+        - run: terraform plan
 
     terraform_apply:
         if: github.event_name == 'push'
@@ -64,6 +53,12 @@ jobs:
                 working-directory: ./terraform
         steps:
             - uses: actions/checkout@v4
+
+            - name: configure aws credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                role-to-assume: ${{ secrets.AWS_ARN_ROLE }}
+                aws-region: ${{ env.AWS_REGION }}
 
             - name: setup and apply terraform
               uses: hashicorp/setup-terraform@v3
