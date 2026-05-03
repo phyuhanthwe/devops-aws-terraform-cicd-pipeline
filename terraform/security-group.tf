@@ -11,7 +11,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow-ssh" {
   ip_protocol       = "tcp"
   # will get ip from github secrets 
   # fixed fmt
-  cidr_ipv4 = "${var.MY_IP}/32"
+  cidr_ipv4 = "${var.my_ip}/32"
   from_port = "22"
   to_port   = "22"
 }
