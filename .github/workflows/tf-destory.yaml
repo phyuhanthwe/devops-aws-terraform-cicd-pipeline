@@ -1,4 +1,4 @@
-name: Terraform Destory
+name: Terraform Destroy
 
 on:
     workflow_dispatch: 
@@ -8,7 +8,7 @@ permissions:
     contents: read
 
 jobs:
-    terraform_destory:
+    terraform_destroy:
         runs-on: ubuntu-latest
         environment: "production"
         defaults:
@@ -27,5 +27,5 @@ jobs:
             - name: Terraform init
               run: terraform init
             
-            - name: Terraform Destory
-              run: terraform destory --auto-approve
+            - name: Terraform destroy
+              run: terraform destroy --auto-approve
