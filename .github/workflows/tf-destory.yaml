@@ -3,6 +3,10 @@ name: Terraform Destroy
 on:
     workflow_dispatch: 
 
+env:
+  AWS_REGION : ap-southeast-1 
+  TF_VAR_my_ip: ${{ secrets.TF_VAR_my_ip }}
+
 permissions: 
     id-token: write
     contents: read
@@ -22,7 +26,7 @@ jobs:
               uses: aws-actions/configure-aws-credentials@v4
               with:
                   role-to-assume : ${{secrets.AWS_ARN_ROLE}}
-                  aws-region: ap-southeast-1
+                  aws-region: ${{env.AWS_REGION}}
 
             - name: Terraform init
               run: terraform init
