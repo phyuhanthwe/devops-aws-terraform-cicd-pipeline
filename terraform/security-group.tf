@@ -20,8 +20,8 @@ resource "aws_vpc_security_group_ingress_rule" "allow-http" {
   security_group_id = aws_security_group.demo-sg.id
   ip_protocol       = "tcp"
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = "3000"
-  to_port           = "3000"
+  from_port         = "80"
+  to_port           = "80"
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow-outbound" {

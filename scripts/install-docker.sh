@@ -9,6 +9,6 @@ sudo usermod -aG docker ubuntu
 
 cd /home/ubuntu
 
-docker pull phyuhan/fast-app:v01
+docker pull phyuhan/fastapi-app:v01
 
-docker run -it --name fastapi-app phyuhan/fastapi-app:v01
+docker run -d --name fastapi-app01 -p 80:8000 phyuhan/fastapi-app:v01
