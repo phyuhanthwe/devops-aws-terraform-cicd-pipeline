@@ -14,6 +14,10 @@ variable "az" {
 }
 
 variable "my-ip" {
+  type = string
+}
+
+variable "bucket-name" {
   type    = string
-  default = "184.22.65.143"
+  default = "ph-demo-bucket01"
 }

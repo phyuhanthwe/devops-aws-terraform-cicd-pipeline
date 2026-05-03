@@ -4,14 +4,13 @@ terraform {
       source  = "hashicorp/aws"
       version = "6.43.0"
     }
-    tls = {
-      source  = "hashicorp/tls"
-      version = "4.2.1"
-    }
-    local = {
-      source  = "hashicorp/local"
-      version = "2.8.0"
-    }
+  }
+  backend "s3" {
+    bucket       = var.bucket-name
+    key          = "dev/terraform.tfstate"
+    region       = var.region
+    encrypt      = true
+    use_lockfile = true
   }
 }
 
