@@ -14,7 +14,8 @@ variable "az" {
 }
 
 variable "my-ip" {
-  type = string
+  description = "Your public IP address"
+  type        = string
 }
 
 # variable "bucket-name" {
