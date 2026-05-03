@@ -55,6 +55,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
+            # need to give full access for this iam role
             - name: configure aws credentials
               uses: aws-actions/configure-aws-credentials@v4
               with:
