@@ -17,7 +17,7 @@ variable "my-ip" {
   type = string
 }
 
-variable "bucket-name" {
-  type    = string
-  default = "ph-demo-bucket01"
-}
+# variable "bucket-name" {
+#   type    = string
+#   default = "ph-demo-bucket01"
+# }

@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket       = var.bucket-name
+    bucket       = "ph-demo-bucket01"
     key          = "dev/terraform.tfstate"
-    region       = var.region
+    region       = "ap-southeast-1"
     encrypt      = true
     use_lockfile = true
   }
