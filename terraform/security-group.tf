@@ -9,6 +9,7 @@ resource "aws_security_group" "demo-sg" {
 resource "aws_vpc_security_group_ingress_rule" "allow-ssh" {
   security_group_id = aws_security_group.demo-sg.id
   ip_protocol       = "tcp"
+  # will get ip from github secrets
   cidr_ipv4         = "${var.my-ip}/32"
   from_port         = "22"
   to_port           = "22"
