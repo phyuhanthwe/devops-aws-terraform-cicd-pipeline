@@ -13,7 +13,12 @@ variable "az" {
   default = "ap-southeast-1a"
 }
 
-variable "my-ip" {
-  type    = string
-  default = "184.22.65.143"
+variable "my_ip" {
+  description = "Your public IP address"
+  type        = string
 }
+
+# variable "bucket-name" {
+#   type    = string
+#   default = "ph-demo-bucket01"
+# }

@@ -12,6 +12,7 @@ on:
 env:
   
   AWS_REGION : ap-southeast-1 
+  TF_VAR_my_ip: ${{ secrets.TF_VAR_my_ip }}
 
 # Permission can be added at job level or workflow level    
 permissions:
