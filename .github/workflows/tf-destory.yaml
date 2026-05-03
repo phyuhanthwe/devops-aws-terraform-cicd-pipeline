@@ -3,6 +3,10 @@ name: Terraform Destory
 on:
     workflow_dispatch: 
 
+permissions: 
+    id-token: write
+    contents: read
+
 jobs:
     terraform_destory:
         runs-on: ubuntu-latest
