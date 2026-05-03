@@ -13,7 +13,7 @@ variable "az" {
   default = "ap-southeast-1a"
 }
 
-variable "my-ip" {
+variable "MY_IP" {
   description = "Your public IP address"
   type        = string
 }
