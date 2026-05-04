@@ -23,8 +23,8 @@ services:
       - ../.env
     depends_on:
       - db
-    # command: ["python", "-m", "app.main"]
-    container_name: fastapi-app01
+    command: ["python", "-m", "app.main"]
+    container_name: fastapi-app
       
 volumes:
   postgres_data:
