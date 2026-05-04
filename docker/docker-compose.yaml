@@ -13,8 +13,8 @@ services:
     container_name: postgres_db
 
   fastapi-app:
-    build:
-      # context: .. means root directory
+    build: 
+      # # context: .. means root directory
       context: ..
       dockerfile: docker/Dockerfile
     ports:
@@ -26,7 +26,6 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_PORT=5432
-
     depends_on:
       - db
     command: ["python", "-m", "app.main"]
