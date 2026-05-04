@@ -6,6 +6,7 @@ def get_db_connection():
     Connect to PostgreSQL.
     All values come from environment variables (set in docker-compose or AWS Secrets Manager).
     """
+    #fixed env
     conn = psycopg2.connect(
         host=os.getenv("DB_HOST"),
         database=os.getenv("DB_NAME"),
