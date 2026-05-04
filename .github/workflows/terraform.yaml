@@ -4,11 +4,13 @@ on:
     pull_request: 
         paths: 
         - terraform/**
+        - scripts/**
 
     push: 
         branches: [main]
         paths:
         - terraform/**
+        - scripts/**
 env:
   
   AWS_REGION : ap-southeast-1 
