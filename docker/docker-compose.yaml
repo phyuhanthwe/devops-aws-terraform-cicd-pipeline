@@ -24,7 +24,7 @@ services:
     depends_on:
       - db
     command: ["python", "-m", "app.main"]
-    container_name: fastapi-app
+    container_name: fastapi-app01
       
 volumes:
   postgres_data:

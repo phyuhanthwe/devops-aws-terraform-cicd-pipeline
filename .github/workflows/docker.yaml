@@ -49,4 +49,6 @@ jobs:
             with:
               file: ./docker/Dockerfile
               push: true
-              tags: phyuhan/fastapi-app:v01
+              tags: |
+                phyuhan/fastapi-app:${{github.sha}}
+                phyuhan/fastapi-app:latest
