@@ -9,8 +9,10 @@ sudo usermod -aG docker ubuntu
 
 cd /home/ubuntu
 
+#fixed tag name
 docker pull phyuhan/fastapi-app:latest
 
+#add doceker stop, rm
 docker stop fastapi-app01 || true
 docker rm fastapi-app01 || true
 
