@@ -14,7 +14,7 @@ The main goal is to automate:
 
 ## Architecture Diagram(Current)
 
-![Architecture Workflow](./architecture-diagram.png)
+![Architecture Workflow](./images//architecture-diagram.png)
 
 ---
 
@@ -33,6 +33,28 @@ The main goal is to automate:
 * **Database**: PostgreSQL (containerized)
 
 ---
+
+## CI/CD Pipeline
+
+The CI/CD pipeline is implemented using GitHub Actions.
+
+### 🔹 Trigger Conditions
+
+* Runs on push to `main` branch
+* Triggered when changes occur in:
+
+  * `app/`
+  * `docker/`
+
+### 🔹 Pipeline Stages
+![CICD Pipeline for Running Test and Build-Push Image](images/cicd-docker.png)
+
+1. Run tests
+2. Build Docker image
+3. Push image to Docker Hub
+
+---
+
 
 ## Deployment Strategy
 
@@ -82,16 +104,19 @@ The main goal is to automate:
 Three separate workflows:
 
 1. **Pull Request**
+![CICD pipeline for terraform plan](images/cicd-terraform-plan.png)
 
    * `terraform fmt`
    * `terraform validate`
    * `terraform plan`
 
 2. **Push to main**
+![CICD pipeline for terraform apply](images/cicd-apply.png)
 
    * `terraform apply`
 
 3. **Manual Trigger**
+![CICD pipeline for terraform destory](images/cicd-desory.png)
 
    * `terraform destroy` (via `workflow_dispatch`)
 
@@ -101,38 +126,6 @@ Three separate workflows:
 * Uses `use_lockfile` for state consistency
 
 ---
-
-## CI/CD Pipeline
-
-The CI/CD pipeline is implemented using GitHub Actions.
-
-### 🔹 Trigger Conditions
-
-* Runs on push to `main` branch, pull_request, manual run via workflow_dispatch 
-* Triggered when changes occur in:
-
-  * `app/`
-  * `docker/`
-  * `terraform/`
-
-### 🔹 Pipeline Stages
-![CICD Pipeline for Running Test and Build-Push Image](images/cicd-docker.png)
-
-1. Run tests
-2. Build Docker image
-3. Push image to Docker Hub
-
-![CICD pipeline for terraform plan](images/cicd-terraform-plan.png)
-
-1. Configure AWS Credentials uisn OIDC with IAM Role
-2. Set up and run terraform (init, fmt, validate, plan)
-
-![CICD pipeline for terraform apply](images/cicd-apply.png)
-
-1. Configure AWS Credentials uisn OIDC with IAM Role
-2. Set up and apply terraform (init, apply --auto-approve)
----
-
 
 ## Current Limitations
 
