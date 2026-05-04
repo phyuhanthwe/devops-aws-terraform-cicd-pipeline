@@ -49,6 +49,7 @@ jobs:
           - name: Build image and push to docker hub
             uses: docker/build-push-action@v7
             with:
+              context: .
               file: ./docker/Dockerfile
               push: true
               no-cache: true
