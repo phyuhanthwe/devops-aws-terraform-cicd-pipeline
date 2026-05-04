@@ -14,16 +14,16 @@ services:
 
   fastapi-app:
     build:
-      context: ..
+      context: .
       dockerfile: docker/Dockerfile
     ports:
       - 80:8000
     restart: unless-stopped
     env_file: 
-      - ../.env
+      - .env
     depends_on:
       - db
-    command: ["python", "-m", "app.main"]
+    # command: ["python", "-m", "app.main"]
     container_name: fastapi-app01
       
 volumes:
