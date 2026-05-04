@@ -98,7 +98,7 @@
 <div class="container">
     <div class="nav">
         <a href="/">Home</a>
-        <a href="/users-page">Users</a>
+        <a href="/users">Users</a>
         <a href="/docs">API Docs</a>
     </div>
 
@@ -111,10 +111,18 @@
         <button type="submit">Create User</button>
     </form>
 
+    <!-- ✅ NEW: Delete User Section -->
+    <h2>Delete User</h2>
+    <form id="deleteForm">
+        <input type="number" id="deleteUserId" placeholder="Enter user ID" required>
+        <button type="submit">Delete User</button>
+    </form>
+
     <div id="message" class="message"></div>
 </div>
 
 <script>
+// CREATE USER
 document.getElementById('userForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -132,16 +140,49 @@ document.getElementById('userForm').addEventListener('submit', async function(e)
             body: JSON.stringify(user)
         });
 
-        const result = await response.json();
-
-        showMessage('User created successfully!', 'success');
-        document.getElementById('userForm').reset();
+        if (response.ok) {
+            showMessage('User created successfully!', 'success');
+            document.getElementById('userForm').reset();
+        } else {
+            showMessage('Failed to create user.', 'error');
+        }
 
     } catch (error) {
         showMessage('Error creating user.', 'error');
     }
 });
 
+// DELETE USER
+document.getElementById('deleteForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const userId = document.getElementById('deleteUserId').value;
+
+    // optional safety check
+    if (!confirm(`Are you sure you want to delete user ${userId}?`)) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`/users/${userId}`, {
+            method: 'DELETE'
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            showMessage(result.message, 'success');
+            document.getElementById('deleteForm').reset();
+        } else {
+            showMessage(result.detail || 'User not found.', 'error');
+        }
+
+    } catch (error) {
+        showMessage('Error deleting user.', 'error');
+    }
+});
+
+// MESSAGE HANDLER
 function showMessage(text, type) {
     const message = document.getElementById('message');
     message.textContent = text;
