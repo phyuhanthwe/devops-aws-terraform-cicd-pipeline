@@ -1,11 +1,7 @@
 #!/bin/bash
 set -e
 
-# sleep 30
-
-# echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4
-
-# sudo sed -i 's|http://ap-southeast-1.ec2.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
+echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4
 
 for i in {1..5}; do
   sudo apt-get update -y && break
