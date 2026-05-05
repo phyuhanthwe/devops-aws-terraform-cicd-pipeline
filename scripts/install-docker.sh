@@ -47,19 +47,8 @@ volumes:
   postgres_data:
 EOF
 
-# Pull latest images
-sudo docker compose pull
+#install docker-compose 
+sudo apt install -y docker-compose
 
 # Run everything
-sudo docker compose up -d
-
-# #fixed tag name
-# sudo docker pull phyuhan/fastapi-app:latest
-
-# #add doceker stop, rm
-# sudo docker stop fastapi-app01 || true
-# sudo docker rm fastapi-app01 || true
-
-# sudo docker compose up -d
-
-# sudo docker run -d --name fastapi-app01 -p 80:8000 phyuhan/fastapi-app:latest
+docker-compose up -d
