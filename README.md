@@ -117,7 +117,7 @@ Three separate workflows:
    * `terraform apply`
 
 3. **Manual Trigger**
-![CICD pipeline for terraform destory](images/cicd-desory.png)
+![CICD pipeline for terraform destory](images/cicd-destory.png)
 
    * `terraform destroy` (via `workflow_dispatch`)
 
