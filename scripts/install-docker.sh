@@ -1,13 +1,12 @@
 #!/bin/bash
 set -e
 
-sudo apt upgrade -y
-
-for i in {1..5}; do
-  sudo apt update -y && break || sleep 5
+# Update system
+for i in {1..3}; do
+  sudo apt update -y && sudo apt upgrade -y && break || sleep 3
 done
 
-sudo apt install -y docker.io
+sudo apt-get install -y docker.io
 
 sudo systemctl start docker
 sudo systemctl enable docker
