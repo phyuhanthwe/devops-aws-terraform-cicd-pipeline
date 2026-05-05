@@ -1,6 +1,11 @@
 #!/bin/bash
-sudo apt update -y
+set -e
+
 sudo apt upgrade -y
+
+for i in {1..5}; do
+  sudo apt update -y && break || sleep 5
+done
 
 sudo apt install -y docker.io
 
@@ -47,8 +52,18 @@ volumes:
   postgres_data:
 EOF
 
-#install docker-compose 
-sudo apt install -y docker-compose
+# Set up the repository
+sudo apt install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$UBUNTU_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Install Docker Compose Pulgin
+for i in {1..5}; do
+  sudo apt update -y && break || sleep 5
+done
+sudo apt install -y docker-compose-plugin
 
 # Run everything
-docker-compose up -d
+sudo docker compose up -d
