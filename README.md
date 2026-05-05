@@ -14,7 +14,7 @@ The main goal is to automate:
 
 ## Architecture Diagram(Current)
 
-![Architecture Workflow](./images/architecture-diagram.png)
+![Architecture Workflow](./images/infra-diagram.png)
 
 ---
 
