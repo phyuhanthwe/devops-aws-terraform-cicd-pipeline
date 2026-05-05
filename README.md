@@ -86,6 +86,8 @@ The CI/CD pipeline is implemented using GitHub Actions.
 * Port 80 (HTTP) open to the public
 * Port 22 (SSH) restricted to a specific IP address
 
+### State File
+* Use AWS S3 for remote backend state file
 ---
 
 ## Authentication & Secrets
