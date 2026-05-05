@@ -63,6 +63,7 @@ The CI/CD pipeline is implemented using GitHub Actions.
 
   * Pulls Docker image from Docker Hub
   * Starts services using Docker Compose
+![Deployment Strategy](images/deploy-strategy.png)
 
 > ⚠️ Note: `user_data` runs only once during instance launch. Continuous deployment will be improved in future iterations.
 
